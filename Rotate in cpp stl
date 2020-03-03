@@ -5,7 +5,9 @@ C++ STL | std::rotate() function: Here, we are going to learn about the rotate()
 Submitted by IncludeHelp, on May 26, 2019
 
 C++ STL std::rotate() function
-rotate() function is a library function of algorithm header, it is used to rotate left the elements of a sequence within a given range, it accepts the range (start, end) and a middle point, it rotates the elements in such way that the element pointed by the middle iterator becomes the new first element.
+rotate() function is a library function of algorithm header, it is used to rotate left the elements of a sequence within a given range,
+it accepts the range (start, end) and a middle point, it rotates the elements in such way that the element pointed by the middle iterator
+becomes the new first element.
 
 Note: To use rotate() function – include <algorithm> header or you can simple use <bits/stdc++.h> header file.
 
