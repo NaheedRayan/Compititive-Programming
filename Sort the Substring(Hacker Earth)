@@ -1,0 +1,54 @@
+Sort the Substring
+Given a string S, and two numbers N, M - arrange the characters of string in between the 
+indexes N and M (both inclusive) in descending order. (Indexing starts from 0).
+
+Input Format:
+First line contains T - number of test cases.
+Next T lines contains a string(S) and two numbers(N, M) separated by spaces.
+
+Output Format:
+Print the modified string for each test case in new line.
+
+Constraints:
+
+ // |S| denotes the length of string.
+
+SAMPLE INPUT 
+3
+hlleo 1 3
+ooneefspd 0 8
+effort 1 4
+
+
+SAMPLE OUTPUT 
+hlleo
+spoonfeed
+erofft
+
+
+
+
+Hint: here a third parameter is needed for sort stl in order to reverse effeciently.
+Solution:
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+	//ios::sync_with_stdio(false);
+	long long int n;
+	cin >> n;
+	while (n--)
+	{
+		string x;
+		long long int  l, r;
+		cin >> x >> l >> r;
+		sort(x.begin() + l, x.begin() + r + 1, greater<long long>());//here the third parameter is used for reversing
+		cout << x << "\n";
+	}
+	return 0;
+}
+
