@@ -1,0 +1,90 @@
+Little monk has travelled across the world but he has never seen a place like byteland. 
+The mountains in the byteland have a unique order. Height of  mountain is represented by
+an interval  i.e. the height of the mountain is in increasing order, . The heights of
+mountains are such that if  then . Now the little monk wants to know  smallest height in the byteland.
+
+Note: x will be always in the given range of intervals.
+
+Input Format:
+First line contains two space separated integers, N  and Q , number of mountains and number of queries.
+Next N lines contains two separated integers each,  and  .  line contains the starting height 
+and the end height of the  mountain.
+Next Q lines contains one integer, x , each, denoting the queries.
+
+Output Format:
+For each query, print  smallest height in the byteland.
+
+SAMPLE INPUT 
+3 3
+1 10
+11 20
+21 30
+5
+15
+25
+SAMPLE OUTPUT 
+5
+15
+25
+Explanation
+enter image description here
+
+The mountains will look like the image above. So the heights will be 
+[1, 2, 3, 4, ....., 8, 9, 10, 11, 12, 13, ...., 19, 20, 21, 22, ......, 29, 30].
+
+5^{th} smallest height will be 5.
+15^{th} smallest height will be 15.
+25^{th} smallest height will be 25.
+
+
+Hint : We will convert these interval into continous form.
+For example : [ 5 , 6 ] , [ 8 ,12]
+                  |           |
+                  |           |
+              [ 1 , 2 ] , [ 3 , 7]
+                    |           |
+ A[i] =  [0 ,       2   ,       7 ]
+ 
+ for creating A[i]:
+ A[i] = A[i-1] + (r[i] - l[i] +1)
+ 
+ 
+ 
+ Solution:
+ #include <iostream>
+#include <bits/stdc++.h>
+
+
+using namespace std ;
+
+const int MAX = 1e6 + 5;
+long long l[MAX], r[MAX], A[MAX];
+
+int main()
+{
+
+	long long int n , q ;
+	cin >> n >> q ;
+	for(int i = 1 ; i <= n ;i++)
+	{
+		cin >> l[i] >> r[i] ;
+		A[i] = A[i-1] + (r[i] - l[i] +1) ;
+	}
+
+	while (q--)
+	{
+		long long int x ;
+		cin >> x ;
+		auto it = lower_bound(A + 1, A + n + 1, x);
+		long long int idx = it - A;
+
+		cout << (l[idx] + x - 1 - A[idx-1]) << endl;
+
+	}
+	
+	return 0;
+}
+
+
+
+-------------------------------------------------THE END----------------------------------------------------------------
