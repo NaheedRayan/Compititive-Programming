@@ -1,33 +1,50 @@
-I was having trouble understanding Bitmask, then I found an unknown pdf about Bitmask on google. I would like to help the beginners like me in understanding Bitmasks and their uses. Here we go :
+I was having trouble understanding Bitmask, then I found an unknown pdf about Bitmask on google.
+I would like to help the beginners like me in understanding Bitmasks and their uses. Here we go :
 
 #### MOTIVATION
 
-Suppose you have a set of objects and you want some way to represent which objects to pick and which ones not to
-pick. How do you represent that in in a program? More generally, how do you represent a subest of a set?One way is to use a Map to associate with each object a boolean value indicating whether the object is picked. Alternatively,if the object can be indexed by integers, you can use a boolean array. However, this takes up a lot of memory and can be slow due to the overhead of Map and array. If the size of the set is not too large, a bitmask is much more efficient (and convenient)!
+Suppose you have a set of objects and you want some way to represent which objects to pick and 
+which ones not to pick. How do you represent that in in a program? More generally, how do you 
+represent a subest of a set?One way is to use a Map to associate with each object a boolean value
+indicating whether the object is picked. Alternatively,if the object can be indexed by integers, 
+you can use a boolean array. However, this takes up a lot of memory and can be slow due to the 
+overhead of Map and array. If the size of the set is not too large, a bitmask is much more efficient
+(and convenient)!
 
 #### WHAT IS BITMASKS ?
 
-Bitmasks a.k.a. lightweight, small sets of Booleans (native support in C/C++/Java). An integer is stored in a computer’s memory as a sequence/string of bits. Thus, we can use integers to represent a lightweight small set of Boolean values. All set operations then involve only the bitwise manipulation of the corresponding integer, which makes it a much more efficient choice when compared with the C++ STL vector, bitset, or set options. Such speed is important in competitive programming.
+Bitmasks a.k.a. lightweight, small sets of Booleans (native support in C/C++/Java). An integer is 
+stored in a computer’s memory as a sequence/string of bits. Thus, we can use integers to represent 
+a lightweight small set of Boolean values. All set operations then involve only the bitwise 
+manipulation of the corresponding integer, which makes it a much more efficient choice when 
+compared with the C++ STL vector, bitset, or set options. Such speed is important in competitive 
+programming.
 
-We know an integer is just a bunch of bits stringed together. The 1st bit will represent whether the 1st object is picked, the 2nd bit will represent whether the 2nd object is picked or not, etc. For example, suppose in a set of 5 objects, we have picked the 1st , 3rd , and 4th object. The bitmask to represent this in binary is 01101 or 13 in decimal (in the notes, the 1 st bit will always be the least significant bit and will always appear at the very right).
+We know an integer is just a bunch of bits stringed together. The 1st bit will represent whether 
+the 1st object is picked, the 2nd bit will represent whether the 2nd object is picked or not, etc. 
+For example, suppose in a set of 5 objects, we have picked the 1st , 3rd , and 4th object. The bitmask
+to represent this in binary is 01101 or 13 in decimal (in the notes, the 1 st bit will always be the 
+least significant bit and will always appear at the very right).
 
 #### MANIPULATING BITMASKS
 
-1. REPRESENTATION: A 32 (or 64)-bit signed integer for up to 32 (or 64) items. ( To avoid issues with the 
-    two’s complement representation, use a 32-bit/64-bit signed integer to represent bitmasks of up to
-    30/62 items only, respectively ).
+1. REPRESENTATION: A 32 (or 64)-bit signed integer for up to 32 (or 64) items. ( To avoid issues 
+   with the two’s complement representation, use a 32-bit/64-bit signed integer to represent 
+   bitmasks of up to 30/62 items only, respectively ).
 
     For example:                          5| 4  | 3 | 2 | 1 | 0   <- 0-based indexing from right
                                          32| 16 | 8 | 4 | 2 | 1   <- power of 2
                      A= 34 (base 10) =   1 | 0  | 0 | 0 | 1 | 0   <- in binary
                                          F | E  | D | C | B | A   <- alternative alphabet label
-   In the example above,the integer A = 34 or 100010 in binary also represents a small set {1, 5} with a
-   0-based indexing scheme in increasing digit significance ( or {B, F} using the alternative alphabet
-   label )because the second and the sixth bits (counting from the right) of A are on ( 1 ).
+   
+   In the example above,the integer A = 34 or 100010 in binary also represents a small set {1, 5} 
+   with a 0-based indexing scheme in increasing digit significance ( or {B, F} using the alternative 
+   alphabet label )because the second and the sixth bits (counting from the right) of A are on ( 1 ).
 
  2. To multiply/divide an integer by 2: 
-                                    We only need to shift the bits in the integer left/right, respectively.
-    Notice that the truncation in the shift right operation automatically rounds the division-by-2 down,
+    We only need to shift the bits in the integer left/right, respectively.
+    Notice that the truncation in the shift right operation automatically rounds the 
+    division-by-2 down,
     e.g. 17/2  = 8.
 
     For example:         A = 34 (base 10)                  = 100010 (base 2)
