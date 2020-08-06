@@ -1,0 +1,61 @@
+------------------Find duplicates in O(n) time and O(1) extra space----------------
+
+Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), 
+prove that at least one duplicate number must exist.
+Assume that there is only one duplicate number, find the duplicate one.
+
+
+Its obvious that there is a duplicate number because of the pigeon hole principal.
+Since there are n+1 spaces and integers between 1-n.
+
+Here we will be using "floyd's hare and tortoise algo" for detecting a cycle in the given
+array.
+
+
+Solution:
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Solution {
+public:
+    int find_duplicate(vector<int>&nums)
+    {
+        int slow = nums[0]; //a slow pointer (tortise)
+        int fast = nums[0]; //a fast pointer (hare)
+        do
+        {
+            slow = nums[slow];         //it will move only one step
+            fast = nums[nums[fast]];   //it will move 2 steps
+        } while (slow != fast);
+
+        //after the first collision the fast pointer will be at starting point
+        fast == nums[0];
+        while (slow!=fast)
+        {
+            slow = nums[slow];         //it will move only one step
+            fast = nums[fast];   //it will move only one step
+        }
+        //it will return the second index of collision
+        return slow;
+    }
+};
+
+
+
+
+int main()
+{
+
+    // a vector of size 10
+    vector <int> v(10);
+    v ={ 2, 5, 9, 6, 9, 3, 8, 9, 7, 1 };
+
+    //creating an object
+    Solution obj;
+    //it will print the position
+    cout << obj.find_duplicate(v) <<endl;
+
+
+    return 0;
+}
