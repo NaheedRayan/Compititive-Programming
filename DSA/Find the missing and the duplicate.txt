@@ -1,0 +1,91 @@
+
+
+#include <bits/stdc++.h>
+// #include <iostream>
+// #include <algorithm>
+// #include <math.h>
+using namespace std;
+
+// Function to find the missing number and duplicate element
+// using XOR operator in an array of size n and range of
+// elements between [1 to n]
+pair<int, int> findMissingAndDuplicate(int arr[], int n)
+{
+    /* Will hold xor of all elements  
+    and numbers from 1 to n */
+    int xor1;
+
+    /* Will have only single set bit of xor1 */
+    int set_bit_no;
+
+    int x = 0;
+    int y = 0;
+
+    xor1 = arr[0];
+
+    /* Get the xor of all array elements */
+    for (int i = 1; i < n; i++)
+        xor1 = xor1 ^ arr[i];
+
+    /* XOR the previous result with numbers  
+    from 1 to n*/
+    for (int i = 1; i <= n; i++)
+        xor1 = xor1 ^ i;
+
+    /* Get the rightmost set bit in set_bit_no */
+    set_bit_no = xor1 & ~(xor1 - 1);
+    //set_bit_no = log2(xor1 & -xor1) + 1; //here the set_bit_no position is one based
+    //cout << set_bit_no << endl;
+
+    /* Now divide elements into two  
+    sets by comparing a rightmost set 
+    bit of xor1 with the bit at the same  
+    position in each element. Also,  
+    get XORs of two sets. The two 
+    XORs are the output elements.  
+    The following two for loops  
+    serve the purpose */
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] & set_bit_no)
+            /* arr[i] belongs to first set */
+            x = x ^ arr[i];
+
+        else
+            /* arr[i] belongs to second set*/
+            y = y ^ arr[i];
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        if (i & set_bit_no)
+            /* i belongs to first set */
+            x = x ^ i;
+
+        else
+            /* i belongs to second set*/
+            y = y ^ i;
+    }
+
+    /* x and y hold the desired 
+        output elements */
+
+    return make_pair(x, y);
+}
+
+int main()
+{
+    int arr[] = {3, 3, 1, 5, 2, 4};
+    int n = 6; // size of the array is n
+
+    pair<int, int> p = findMissingAndDuplicate(arr, n);
+
+    // linear search for missing element
+
+    if (find(arr, arr + n, p.first) == arr + n)
+        swap(p.first, p.second);
+
+    cout << "Duplicate and missing elements are "
+         << p.first << " and " << p.second;
+
+    return 0;
+}
