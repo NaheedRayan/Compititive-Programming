@@ -10,7 +10,7 @@ bool cmp(string x,string y)
 
 ## Sample Uses:
 ## Sorting An Array In Reverse Order
-<br>
+
 ``Method 1:``
 
 ```cpp
