@@ -51,7 +51,7 @@ int main() {
 ```
 
 <br>
-##For an array now.
+## For an array now.
 <br>
 
 ```cpp
@@ -79,4 +79,5 @@ int main() {
 ```
 
 <br>
+
 # The End
