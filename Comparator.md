@@ -9,7 +9,8 @@ bool cmp(string x,string y)
 
 
 ## Sample Uses:
-## ``Sorting An Array In Reverse Order``<br>
+## Sorting An Array In Reverse Order
+<br>
 ``Method 1:``
 <br>
 
@@ -49,9 +50,8 @@ int main() {
     return 0;
 }
 ```
-
-<br>
 ## For an array now.
+
 <br>
 
 ```cpp
