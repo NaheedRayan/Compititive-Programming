@@ -20,7 +20,9 @@ sort(a.rbegin(), a.rend());
 ```
 
 <br>
+
 ``Method 2:``
+
 <br>
 
 ```cpp
