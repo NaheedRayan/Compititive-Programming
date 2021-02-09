@@ -12,8 +12,6 @@ bool cmp(string x,string y)
 ## Sorting An Array In Reverse Order
 <br>
 ``Method 1:``
-<br>
-
 
 ```cpp
 vector a;
