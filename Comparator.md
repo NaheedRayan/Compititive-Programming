@@ -23,8 +23,6 @@ sort(a.rbegin(), a.rend());
 
 ``Method 2:``
 
-<br>
-
 ```cpp
 //For an vector
 bool cmp(int a,int b) {
